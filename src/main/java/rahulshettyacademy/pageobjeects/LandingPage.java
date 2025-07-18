@@ -18,13 +18,19 @@ public class LandingPage {
 
     }
 
-//    WebElement userEmail = driver.findElement(By.id("userEmail"));
+//    WebElement userEmail = driver.findElement(By.id("userEmail")); //instead of using this, then using PageFactory
 
     //PageFactory
     @FindBy(id = "userEmail")
     WebElement userEmail;
     @FindBy(id = "userPassword")
-    WebElement password;
+    WebElement passwordEle;
     @FindBy(id = "login")
     WebElement submit;
+
+    public void loginApplication(String email, String password) {
+        userEmail.sendKeys(email);
+        passwordEle.sendKeys(password);
+        submit.click();
+    }
 }
