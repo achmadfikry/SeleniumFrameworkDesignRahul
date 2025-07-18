@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import rahulshettyacademy.pageobjeects.LandingPage;
 
 import java.time.Duration;
 import java.util.List;
@@ -37,7 +38,7 @@ public class StandAloneTest {
 //        }
 //        System.out.println(driver.findElement(By.cssSelector("h1[class='headcolor']")).getText());
 
-
+        LandingPage landingPage = new LandingPage(driver);
         driver.findElement(By.id("userEmail")).sendKeys("rahulshetty123@yopmail.com");
         driver.findElement(By.id("userPassword")).sendKeys("Password123!");
         driver.findElement(By.id("login")).click();
