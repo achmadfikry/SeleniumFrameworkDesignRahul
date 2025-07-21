@@ -19,9 +19,10 @@ public class SubmitOrderTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         String productName = "ZARA COAT 3";
-        driver.get("https://rahulshettyacademy.com/client");
+
         LandingPage landingPage = new LandingPage(driver);
-        landingPage.loginApplication("rahulshettyacademy@gmail.com", "Password123");
+        landingPage.goTo();
+        landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
 
         if (driver.findElement(By.id("toast-container")).isDisplayed()){
             Assert.assertTrue(true);

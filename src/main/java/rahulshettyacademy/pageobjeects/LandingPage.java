@@ -33,4 +33,8 @@ public class LandingPage {
         passwordEle.sendKeys(password);
         submit.click();
     }
+
+    public void goTo(){
+        driver.get("https://rahulshettyacademy.com/client");
+    }
 }
