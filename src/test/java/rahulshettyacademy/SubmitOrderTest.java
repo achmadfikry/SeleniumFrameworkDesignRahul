@@ -28,17 +28,11 @@ public class SubmitOrderTest {
         if (driver.findElement(By.id("toast-container")).isDisplayed()){
             Assert.assertTrue(true);
         };
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
-
-        List<WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
 
         ProductCatalogue productCatalogue = new ProductCatalogue(driver);
         List<WebElement> products = productCatalogue.getProductList();
 
-        //        products.stream().filter(product->product.getText().equals("ZARA COAT 3")); // it's not finish yet because we have to travel untill we find the right element
-        WebElement selectedProduct = products.stream().filter(product->product.findElement(By.cssSelector("b")).getText().equals(productName)).findFirst().orElse(null);
-        selectedProduct.findElement(By.cssSelector(".card-body button:last-of-type")).click();
+        productCatalogue.addProductToCart(productName);
 
         if (driver.findElement(By.id("toast-container")).isDisplayed()){
             Assert.assertTrue(true);

@@ -28,9 +28,22 @@ public class ProductCatalogue extends AbstractComponent {
     List<WebElement> products;
 
     By productsBy = By.cssSelector(".mb-3");
+    By addToCart = By.cssSelector(".card-body button:last-of-type");
+
     public List<WebElement> getProductList(){
         waitForElementToAppear(productsBy);
         return products;
+    }
+
+    public WebElement getProductByName(String productName){
+        WebElement selectedProduct = getProductList().stream().filter(product->product.findElement(By.cssSelector("b")).getText().equals(productName)).findFirst().orElse(null);
+        return selectedProduct;
+
+    }
+
+    public void addProductToCart(String productName){
+        WebElement prod = getProductByName(productName);
+        prod.findElement(addToCart).click();
     }
 
 }
