@@ -16,30 +16,21 @@ import java.util.List;
 
 public class SubmitOrderTest {
     public static void main(String[] args) {
+        String productName = "ZARA COAT 3";
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        String productName = "ZARA COAT 3";
 
         LandingPage landingPage = new LandingPage(driver);
         landingPage.goTo();
         landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
-
-        if (driver.findElement(By.id("toast-container")).isDisplayed()){
-            Assert.assertTrue(true);
-        };
 
         ProductCatalogue productCatalogue = new ProductCatalogue(driver);
         List<WebElement> products = productCatalogue.getProductList();
 
         productCatalogue.addProductToCart(productName);
 
-        if (driver.findElement(By.id("toast-container")).isDisplayed()){
-            Assert.assertTrue(true);
-        };
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
-        //ng-animating
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.findElement(By.cssSelector("[routerlink*=cart]")).click();
 
