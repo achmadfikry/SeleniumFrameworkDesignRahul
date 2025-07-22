@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import rahulshettyacademy.pageobjects.CartPage;
+import rahulshettyacademy.pageobjects.CheckoutPage;
 import rahulshettyacademy.pageobjects.LandingPage;
 import rahulshettyacademy.pageobjects.ProductCatalogue;
 
@@ -40,13 +41,9 @@ public class SubmitOrderTest {
         Boolean match = cartPage.VerifyProductDisplay(productName);
         Assert.assertTrue(match);
 
-        cartPage.goToCartPage();
-
-        Actions actions = new Actions(driver);
-        actions.sendKeys(driver.findElement(By.cssSelector("input[placeholder='Select Country']")),"Indonesia").build().perform();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
-        driver.findElement(By.xpath("//button[contains(@class,'ta-item')][contains(.,'Indonesia')]")).click();
-        driver.findElement(By.cssSelector(".action__submit")).click();
+        CheckoutPage checkoutPage = cartPage.goToCheckout();
+        checkoutPage.selectCountry("Indonesia");
+        checkoutPage.submitOrder();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
         //ng-animating
