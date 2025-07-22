@@ -32,7 +32,7 @@ public class SubmitOrderTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        driver.findElement(By.cssSelector("[routerlink*=cart]")).click();
+        productCatalogue.goToCartPage();
 
         //css selector: .cartSection h3 -> parent to child
         //xpath: //*[@class='cartSection']/h3 -> parent to child
