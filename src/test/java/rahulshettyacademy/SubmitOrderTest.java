@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import rahulshettyacademy.pageobjects.CartPage;
 import rahulshettyacademy.pageobjects.LandingPage;
 import rahulshettyacademy.pageobjects.ProductCatalogue;
 
@@ -36,8 +37,8 @@ public class SubmitOrderTest {
 
         //css selector: .cartSection h3 -> parent to child
         //xpath: //*[@class='cartSection']/h3 -> parent to child
-        List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
-        Boolean match = cartProducts.stream().anyMatch(cartProduct->cartProduct.getText().equalsIgnoreCase(productName));
+        CartPage cartPage = new CartPage(driver);
+        Boolean match = cartPage.VerifyProductDisplay(productName);
         Assert.assertTrue(match);
 
         driver.findElement(By.cssSelector(".totalRow button")).click();
