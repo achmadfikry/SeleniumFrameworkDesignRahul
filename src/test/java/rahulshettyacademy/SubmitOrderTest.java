@@ -8,10 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import rahulshettyacademy.pageobjects.CartPage;
-import rahulshettyacademy.pageobjects.CheckoutPage;
-import rahulshettyacademy.pageobjects.LandingPage;
-import rahulshettyacademy.pageobjects.ProductCatalogue;
+import rahulshettyacademy.pageobjects.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -43,12 +40,9 @@ public class SubmitOrderTest {
 
         CheckoutPage checkoutPage = cartPage.goToCheckout();
         checkoutPage.selectCountry("Indonesia");
-        checkoutPage.submitOrder();
+        ConfirmationPage confirmationPage = checkoutPage.submitOrder();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
-        //ng-animating
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".hero-primary"))));
-        String confirmMessage = driver.findElement(By.cssSelector(".hero-primary")).getText();
+        String confirmMessage = confirmationPage.getConfirmationMessage();
         Assert.assertTrue(confirmMessage.equalsIgnoreCase("Thankyou for the order."));
 
 
