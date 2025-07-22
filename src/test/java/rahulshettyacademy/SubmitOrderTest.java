@@ -24,20 +24,19 @@ public class SubmitOrderTest {
 
         LandingPage landingPage = new LandingPage(driver);
         landingPage.goTo();
-        landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
+        ProductCatalogue productCatalogue = landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
 
-        ProductCatalogue productCatalogue = new ProductCatalogue(driver);
         List<WebElement> products = productCatalogue.getProductList();
 
         productCatalogue.addProductToCart(productName);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        productCatalogue.goToCartPage();
+        CartPage cartPage = productCatalogue.goToCartPage();
 
         //css selector: .cartSection h3 -> parent to child
         //xpath: //*[@class='cartSection']/h3 -> parent to child
-        CartPage cartPage = new CartPage(driver);
+
         Boolean match = cartPage.VerifyProductDisplay(productName);
         Assert.assertTrue(match);
 

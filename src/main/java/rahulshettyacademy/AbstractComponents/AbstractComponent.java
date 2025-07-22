@@ -7,9 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import rahulshettyacademy.pageobjects.CartPage;
 
 import java.time.Duration;
-import java.util.List;
 
 public class AbstractComponent {
 
@@ -34,8 +34,10 @@ public class AbstractComponent {
         Thread.sleep(1000);
     }
 
-    public void goToCartPage(){
+    public CartPage goToCartPage(){
         cartHeader.click();
+        CartPage cartPage = new CartPage(driver);
+        return cartPage;
     }
 
 }
