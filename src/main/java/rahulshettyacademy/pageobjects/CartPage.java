@@ -21,8 +21,15 @@ public class CartPage extends AbstractComponent {
     @FindBy(css = ".cartSection h3")
     List<WebElement> cartProducts;
 
+    @FindBy(css = ".totalRow button")
+    WebElement checkOutButtons;
+
     public Boolean VerifyProductDisplay(String productName){
         Boolean match = cartProducts.stream().anyMatch(cartProduct->cartProduct.getText().equalsIgnoreCase(productName));
         return match;
+    }
+
+    public void goToCheckout(){
+        checkOutButtons.click();
     }
 }

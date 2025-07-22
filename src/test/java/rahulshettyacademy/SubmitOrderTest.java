@@ -41,7 +41,7 @@ public class SubmitOrderTest {
         Boolean match = cartPage.VerifyProductDisplay(productName);
         Assert.assertTrue(match);
 
-        driver.findElement(By.cssSelector(".totalRow button")).click();
+        cartPage.goToCartPage();
 
         Actions actions = new Actions(driver);
         actions.sendKeys(driver.findElement(By.cssSelector("input[placeholder='Select Country']")),"Indonesia").build().perform();
