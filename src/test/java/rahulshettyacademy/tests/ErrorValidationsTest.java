@@ -5,14 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import rahulshettyacademy.TestComponents.BaseTest;
 import rahulshettyacademy.pageobjects.CartPage;
-import rahulshettyacademy.pageobjects.CheckoutPage;
-import rahulshettyacademy.pageobjects.ConfirmationPage;
 import rahulshettyacademy.pageobjects.ProductCatalogue;
 
 import java.io.IOException;
 import java.util.List;
 
-public class ErrorValidations extends BaseTest {
+public class ErrorValidationsTest extends BaseTest {
     @Test
     public void LoginErrorValidation() throws InterruptedException, IOException {
         String productName = "ZARA COAT 3";
