@@ -5,27 +5,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
+import rahulshettyacademy.TestComponents.BaseTest;
 import rahulshettyacademy.pageobjects.*;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
-public class SubmitOrderTest {
-    public static void main(String[] args) throws InterruptedException {
+public class SubmitOrderTest extends BaseTest {
+    @Test
+    public void SubmitOrderTest() throws InterruptedException, IOException {
         String productName = "ZARA COAT 3";
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-
-        LandingPage landingPage = new LandingPage(driver);
-        landingPage.goTo();
+        LandingPage landingPage = launchApplication();
         ProductCatalogue productCatalogue = landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
 
         List<WebElement> products = productCatalogue.getProductList();
 
         productCatalogue.addProductToCart(productName);
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         CartPage cartPage = productCatalogue.goToCartPage();
 
