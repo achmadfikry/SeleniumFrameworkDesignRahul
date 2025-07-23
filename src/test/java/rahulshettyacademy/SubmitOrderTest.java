@@ -17,7 +17,7 @@ public class SubmitOrderTest extends BaseTest {
     @Test
     public void SubmitOrderTest() throws InterruptedException, IOException {
         String productName = "ZARA COAT 3";
-        LandingPage landingPage = launchApplication();
+
         ProductCatalogue productCatalogue = landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
 
         List<WebElement> products = productCatalogue.getProductList();
