@@ -2,6 +2,7 @@ package rahulshettyacademy.tests;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import rahulshettyacademy.TestComponents.BaseTest;
 import rahulshettyacademy.pageobjects.*;
@@ -13,9 +14,9 @@ public class SubmitOrderTest extends BaseTest {
 
     String productName = "ZARA COAT 3";
 
-    @Test
-    public void SubmitOrderTest() throws InterruptedException, IOException {
-        ProductCatalogue productCatalogue = landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
+    @Test(dataProvider = "getData", groups = {"Purchase","TestMoreThan1Group"})
+    public void SubmitOrderTest(String email, String password, String productName) throws InterruptedException, IOException {
+        ProductCatalogue productCatalogue = landingPage.loginApplication(email, password);
 
         List<WebElement> products = productCatalogue.getProductList();
 
@@ -43,5 +44,10 @@ public class SubmitOrderTest extends BaseTest {
         ProductCatalogue productCatalogue = landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123!");
         OrderPage orderPage = productCatalogue.goToOrdersPage();
         Assert.assertTrue(orderPage.verifyOrderDisplay(productName));
+    }
+
+    @DataProvider
+    public Object[][] getData(){
+        return new Object[][] {{"rahulshetty123@yopmail.com", "Password123!", "ZARA COAT 3"},{"shetty@gmail.com", "Iamking@000", "ADIDAS ORIGINAL"}};
     }
 }
