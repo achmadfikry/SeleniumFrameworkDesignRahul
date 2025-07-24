@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ErrorValidationsTest extends BaseTest {
-    @Test
+    @Test(groups = {"ErrorHandling"})
     public void LoginErrorValidation() throws InterruptedException, IOException {
         String productName = "ZARA COAT 3";
 
