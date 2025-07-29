@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import rahulshettyacademy.TestComponents.BaseTest;
+import rahulshettyacademy.TestComponents.Retry;
 import rahulshettyacademy.pageobjects.CartPage;
 import rahulshettyacademy.pageobjects.ProductCatalogue;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ErrorValidationsTest extends BaseTest {
-    @Test(groups = {"ErrorHandling"})
+    @Test(groups = {"ErrorHandling"}, retryAnalyzer = Retry.class)
     public void LoginErrorValidation() throws InterruptedException, IOException {
         landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123");
 
