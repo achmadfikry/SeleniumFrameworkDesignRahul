@@ -15,21 +15,25 @@ public class Listeners extends BaseTest implements ITestListener {
 
     ExtentTest test;
     ExtentReports extent = ExtentReporterNG.getReportObject();
+    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>(); //thread safe, So basically, saying thread safe means no matter even if you run concurrently, each object creation have its own thread, so it won't interrupt the other overriding variable.
 
     @Override
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getMethod().getMethodName());
+        extentTest.set(test); //unique thread id (ErrorValidationTest)->test
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.log(Status.PASS, "Test Passed");
+//        test.log(Status.PASS, "Test Passed");
+        extentTest.get().log(Status.PASS, "Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         //1. notif failed
-        test.fail(result.getThrowable());
+//        test.fail(result.getThrowable());
+        extentTest.get().fail(result.getThrowable()); //print that log
 
         //2. screenshot
         try {
@@ -45,7 +49,7 @@ public class Listeners extends BaseTest implements ITestListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        test.addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
+        extentTest.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 
         //3. attach to the report
     }
