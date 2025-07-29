@@ -19,7 +19,7 @@ public class SubmitOrderTest extends BaseTest {
 
     String productName = "ZARA COAT 3";
 
-    @Test(dataProvider = "getData", groups = {"Purchase","TestMoreThan1Group"})
+    @Test(dataProvider = "getData", groups = {"Purchase"/*,"TestMoreThan1Group"*/})
 //    public void SubmitOrderTest(String email, String password, String productName) throws InterruptedException, IOException {
     public void SubmitOrderTest(HashMap<String,String> input) throws InterruptedException, IOException {
         ProductCatalogue productCatalogue = landingPage.loginApplication(input.get("email"), input.get("password"));
@@ -68,15 +68,5 @@ public class SubmitOrderTest extends BaseTest {
         List<HashMap<String,String>> data = getJsonDataToMap(System.getProperty("user.dir")+"//src//test//java//rahulshettyacademy//data//PurchaseOrder.json");
         return new Object[][]{{data.get(0)},{data.get(1)}};
     }
-
-    public String getScreenshot(String testCaseName) throws IOException {
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File source = ts.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
-        FileUtils.copyFile(source, file);
-        return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
-    }
-
-    //Extent Reports
 
 }

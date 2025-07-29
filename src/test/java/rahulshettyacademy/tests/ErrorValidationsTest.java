@@ -13,11 +13,9 @@ import java.util.List;
 public class ErrorValidationsTest extends BaseTest {
     @Test(groups = {"ErrorHandling"})
     public void LoginErrorValidation() throws InterruptedException, IOException {
-        String productName = "ZARA COAT 3";
+        landingPage.loginApplication("rahulshetty123@yopmail.com", "Password123");
 
-        ProductCatalogue productCatalogue = landingPage.loginApplication("rahulshe@yopmail.com", "Password123!");
-
-        Assert.assertEquals("Incorrect email or password.",landingPage.getErrorMessage());
+        Assert.assertEquals("Incorrect email password.", landingPage.getErrorMessage());
     }
 
     @Test
