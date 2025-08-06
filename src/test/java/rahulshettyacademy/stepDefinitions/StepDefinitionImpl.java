@@ -49,5 +49,6 @@ public class StepDefinitionImpl extends BaseTest {
     public void message_is_displayed_Confirmation_page(String string) throws Throwable {
         String confirmMessage = confirmationPage.getConfirmationMessage();
         Assert.assertTrue(confirmMessage.equalsIgnoreCase(string));
+        driver.close();
     }
 }
