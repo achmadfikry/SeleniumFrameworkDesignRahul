@@ -51,4 +51,10 @@ public class StepDefinitionImpl extends BaseTest {
         Assert.assertTrue(confirmMessage.equalsIgnoreCase(string));
         driver.close();
     }
+
+    @Then("{string} message is displayed")
+    public void incorrect_email_or_password_message_is_displayed(String string) throws Throwable {
+        Assert.assertEquals(string, landingPage.getErrorMessage());
+        driver.close();
+    }
 }
