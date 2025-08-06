@@ -1,7 +1,7 @@
 @tag
   Feature: Error validation
 
-    @tag2
+    @ErrorValidation
     Scenario Outline:
       Given I landed on Ecommerse page
       When Logged in with username <name> and password <password>
